@@ -3,25 +3,16 @@
 import { SOCIAL_URL } from '@lobechat/business-const';
 import { useAnalytics } from '@lobehub/analytics/react';
 import { type MenuProps } from '@lobehub/ui';
-import { ActionIcon, DropdownMenu, Flexbox, Icon } from '@lobehub/ui';
+import { Flexbox, Icon } from '@lobehub/ui';
 import { DiscordIcon } from '@lobehub/ui/icons';
-import {
-  Book,
-  CircleHelp,
-  Feather,
-  FileClockIcon,
-  FlaskConical,
-  Github,
-  Rocket,
-} from 'lucide-react';
+import { Book, Feather, FileClockIcon, FlaskConical, Rocket } from 'lucide-react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
 import ChangelogModal from '@/components/ChangelogModal';
 import HighlightNotification from '@/components/HighlightNotification';
 import LabsModal from '@/components/LabsModal';
-import { DOCUMENTS_REFER_URL, GITHUB } from '@/const/url';
+import { DOCUMENTS_REFER_URL } from '@/const/url';
 import ThemeButton from '@/features/User/UserPanel/ThemeButton';
 import { useFeedbackModal } from '@/hooks/useFeedbackModal';
 import { useGlobalStore } from '@/store/global';
@@ -188,19 +179,19 @@ const Footer = memo(() => {
     <>
       <Flexbox horizontal align={'center'} gap={2} justify={'space-between'} padding={8}>
         <Flexbox horizontal align={'center'} flex={1} gap={2}>
-          <DropdownMenu items={helpMenuItems} placement="topLeft">
+          {/* <DropdownMenu items={helpMenuItems} placement="topLeft">
             <ActionIcon aria-label={t('userPanel.help')} icon={CircleHelp} size={16} />
-          </DropdownMenu>
-          {!hideGitHub && (
+          </DropdownMenu> */}
+          {/* {!hideGitHub && (
             <a aria-label={'GitHub'} href={GITHUB} rel="noopener noreferrer" target={'_blank'}>
               <ActionIcon icon={Github} size={16} title={'GitHub'} />
             </a>
-          )}
-          {isDevMode && (
+          )} */}
+          {/* {isDevMode && (
             <Link to="/eval">
               <ActionIcon icon={FlaskConical} size={16} title="Evaluation Lab" />
             </Link>
-          )}
+          )} */}
         </Flexbox>
         <ThemeButton placement={'topCenter'} size={16} />
       </Flexbox>

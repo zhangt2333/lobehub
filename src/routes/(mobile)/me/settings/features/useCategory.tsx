@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { type CellProps } from '@/components/Cell';
 import { SettingsTabs } from '@/store/global/initialState';
+import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 export const useCategory = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('setting');
+  const { showProvider } = useServerConfigStore(featureFlagsSelectors);
 
   const items: CellProps[] = [
     {
@@ -15,12 +17,12 @@ export const useCategory = () => {
       key: SettingsTabs.Common,
       label: t('tab.common'),
     },
-    {
+    showProvider && {
       icon: Brain,
       key: SettingsTabs.Provider,
       label: t('tab.provider'),
     },
-    {
+    showProvider && {
       icon: Sparkles,
       key: SettingsTabs.Agent,
       label: t('tab.agent'),
@@ -30,7 +32,7 @@ export const useCategory = () => {
       key: SettingsTabs.Memory,
       label: t('tab.memory'),
     },
-    { icon: Mic2, key: SettingsTabs.TTS, label: t('tab.tts') },
+    showProvider && { icon: Mic2, key: SettingsTabs.TTS, label: t('tab.tts') },
     {
       icon: Info,
       key: SettingsTabs.About,

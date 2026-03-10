@@ -2,18 +2,26 @@
 
 import { Flexbox } from '@lobehub/ui';
 import { memo } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { isCustomBranding } from '@/const/version';
+import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 import DesktopLayoutContainer from './_layout/Desktop/Container';
 import Footer from './(list)/Footer';
 import ProviderDetailPageComponent from './detail';
 import ProviderMenu from './ProviderMenu';
 
+const ProviderDisabledRedirect = ({ mobile }: { mobile?: boolean }) => (
+  <Navigate replace to={mobile ? '/settings' : '/settings/profile'} />
+);
+
 // Layout component that wraps provider pages with navigation
 export const ProviderLayout = memo(() => {
+  const { showProvider } = useServerConfigStore(featureFlagsSelectors);
   const navigate = useNavigate();
+
+  if (!showProvider) return <ProviderDisabledRedirect />;
 
   const handleProviderSelect = (providerKey: string) => {
     navigate(`/settings/provider/${providerKey}`);
@@ -64,6 +72,9 @@ type ProviderPageType = {
 
 const ProviderPage = (props: ProviderPageType) => {
   const { mobile } = props;
+  const { showProvider } = useServerConfigStore(featureFlagsSelectors);
+
+  if (!showProvider) return <ProviderDisabledRedirect mobile={mobile} />;
 
   // For mobile or when used via SettingsContent, use the old Page component
   // This is a fallback for non-router usage
