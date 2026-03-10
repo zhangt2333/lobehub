@@ -53,6 +53,34 @@ interface ModelSelectProps extends Pick<SelectProps, 'loading' | 'size' | 'style
   value?: { model: string; provider?: string };
 }
 
+const normalizeModelSelectValue = (
+  value: ModelSelectProps['value'],
+  enabledList: EnabledProviderWithModels[],
+) => {
+  if (!value?.model) return value;
+
+  const enabledValues = new Set(
+    enabledList.flatMap((provider) =>
+      provider.children.map((model) => `${provider.id}/${model.id}`),
+    ),
+  );
+
+  if (value.provider) {
+    const explicitValue = `${value.provider}/${value.model}`;
+    if (enabledValues.has(explicitValue)) return value;
+  }
+
+  if (!value.model.includes('/')) return value;
+
+  const [provider, ...modelParts] = value.model.split('/');
+  const model = modelParts.join('/');
+  const inferredValue = `${provider}/${model}`;
+
+  if (!provider || !model || !enabledValues.has(inferredValue)) return value;
+
+  return { model, provider };
+};
+
 const ModelSelect = memo<ModelSelectProps>(
   ({
     value,
@@ -68,6 +96,10 @@ const ModelSelect = memo<ModelSelectProps>(
   }) => {
     const { styles: dynamicStyles } = useStyles({ popupWidth });
     const enabledList = useEnabledChatModels();
+    const normalizedValue = useMemo(
+      () => normalizeModelSelectValue(value, enabledList),
+      [enabledList, value],
+    );
 
     const options = useMemo<SelectProps['options']>(() => {
       const getChatModels = (provider: EnabledProviderWithModels) => {
@@ -116,14 +148,17 @@ const ModelSelect = memo<ModelSelectProps>(
       <TooltipGroup>
         <Select
           className={styles.select}
-          defaultValue={`${value?.provider}/${value?.model}`}
           loading={loading}
           options={options}
           popupClassName={popupWidth ? `${styles.popup} ${dynamicStyles.popup}` : styles.popup}
           popupMatchSelectWidth={false}
           size={size}
-          value={`${value?.provider}/${value?.model}`}
           variant={variant}
+          defaultValue={
+            normalizedValue?.model
+              ? `${normalizedValue.provider}/${normalizedValue.model}`
+              : undefined
+          }
           optionRender={(option) => (
             <ModelItemRender
               {...(option as ModelOption)}
@@ -136,6 +171,11 @@ const ModelSelect = memo<ModelSelectProps>(
             width: initialWidth ? 'initial' : undefined,
             ...style,
           }}
+          value={
+            normalizedValue?.model
+              ? `${normalizedValue.provider}/${normalizedValue.model}`
+              : undefined
+          }
           onChange={(value, option) => {
             const model = value.split('/').slice(1).join('/');
             onChange?.({ model, provider: (option as unknown as ModelOption).provider });

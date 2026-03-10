@@ -1,11 +1,25 @@
 import { set } from 'es-toolkit/compat';
 
+const normalizeProviderAndModel = (config: Record<string, unknown>) => {
+  const { model, provider } = config;
+
+  if (typeof model !== 'string' || typeof provider === 'string' || !model.includes('/')) return;
+
+  const [parsedProvider, ...modelParts] = model.split('/');
+  const parsedModel = modelParts.join('/');
+
+  if (!parsedProvider || !parsedModel) return;
+
+  config.provider = parsedProvider.trim();
+  config.model = parsedModel.trim();
+};
+
 /**
  * Improved parsing function that handles numbers, booleans, semicolons, and equals signs in values.
  * @param {string} envStr - The environment variable string to be parsed.
  */
 export const parseAgentConfig = (envStr: string) => {
-  const config = {};
+  const config: Record<string, unknown> = {};
   // use regex to match key-value pairs, considering the possibility of semicolons in values
   const regex = /([^;=]+)=("[^"]+"|[^;]+)/g;
   let match;
@@ -42,6 +56,8 @@ export const parseAgentConfig = (envStr: string) => {
 
     set(config, key, finalValue);
   }
+
+  normalizeProviderAndModel(config);
 
   return config;
 };

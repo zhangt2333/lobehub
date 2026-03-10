@@ -124,6 +124,33 @@ describe('parseAgentConfig', () => {
 
       expect(parseAgentConfig(envStr)).toEqual(expected);
     });
+
+    it('should infer provider from provider/model formatted model', () => {
+      const envStr = 'model=openai/gpt-5-mini';
+
+      expect(parseAgentConfig(envStr)).toEqual({
+        model: 'gpt-5-mini',
+        provider: 'openai',
+      });
+    });
+
+    it('should infer provider from nested provider/model formatted model', () => {
+      const envStr = 'model=openrouter/meta-llama/llama-3.1-8b-instruct:free';
+
+      expect(parseAgentConfig(envStr)).toEqual({
+        model: 'meta-llama/llama-3.1-8b-instruct:free',
+        provider: 'openrouter',
+      });
+    });
+
+    it('should keep explicit provider when it is already configured', () => {
+      const envStr = 'model=meta-llama/llama-3.1-8b-instruct:free;provider=openrouter';
+
+      expect(parseAgentConfig(envStr)).toEqual({
+        model: 'meta-llama/llama-3.1-8b-instruct:free',
+        provider: 'openrouter',
+      });
+    });
   });
 
   describe('Error Boundary', () => {
