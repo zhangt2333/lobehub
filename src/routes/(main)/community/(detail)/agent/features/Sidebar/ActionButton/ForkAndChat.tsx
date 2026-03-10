@@ -54,17 +54,46 @@ const ForkAndChat = memo<{ mobile?: boolean }>(({ mobile }) => {
   };
 
   const handleForkAndChat = async () => {
-    // Check if user is authenticated
-    if (!isAuthenticated) {
-      try {
-        await signIn();
-      } catch {
-        return;
-      }
-    }
-
     try {
       setIsLoading(true);
+
+      const useLocalAddFlow = true;
+
+      if (useLocalAddFlow) {
+        const existingAgentId = identifier
+          ? await agentService.getAgentByMarketIdentifier(identifier)
+          : null;
+
+        if (existingAgentId) {
+          navigate(SESSION_CHAT_URL(existingAgentId, mobile));
+          return;
+        }
+
+        if (!config) throw new Error('Agent config is missing');
+
+        const agentData = {
+          config: {
+            ...config,
+            editorData,
+            ...meta,
+          },
+        };
+
+        const result = await createAgent(agentData);
+        await refreshAgentList();
+        message.success(t('assistants.addAgentSuccess'));
+        navigate(SESSION_CHAT_URL(result!.agentId || result!.sessionId, mobile));
+        return;
+      }
+
+      // Check if user is authenticated
+      if (!isAuthenticated) {
+        try {
+          await signIn();
+        } catch {
+          return;
+        }
+      }
 
       // Step 1: Check if user has already forked this agent
       const existingAgentId = await agentService.getAgentByForkedFromIdentifier(identifier!);
