@@ -3,6 +3,8 @@ import urlJoin from 'url-join';
 
 import { appEnv } from '@/envs/app';
 
+const localAppUrl = 'http://localhost:3210';
+const appBaseUrl = appEnv.APP_URL ?? localAppUrl;
 const marketBaseUrl = new URL(appEnv.MARKET_BASE_URL ?? 'https://market.lobehub.com').origin;
 
 /**
@@ -20,15 +22,15 @@ export const defaultClients: ClientMetadata[] = [
 
     post_logout_redirect_uris: [
       // 动态构建 Web 页面回调 URL
-      urlJoin(appEnv.APP_URL!, '/oauth/logout'),
-      'http://localhost:3210/oauth/logout',
+      urlJoin(appBaseUrl, '/oauth/logout'),
+      `${localAppUrl}/oauth/logout`,
     ],
 
     // 桌面端授权回调 - 改为 Web 页面路径
     redirect_uris: [
       // 动态构建 Web 页面回调 URL
-      urlJoin(appEnv.APP_URL!, '/oidc/callback/desktop'),
-      'http://localhost:3210/oidc/callback/desktop',
+      urlJoin(appBaseUrl, '/oidc/callback/desktop'),
+      `${localAppUrl}/oidc/callback/desktop`,
     ],
 
     // 支持授权码获取令牌和刷新令牌
