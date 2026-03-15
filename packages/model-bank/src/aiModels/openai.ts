@@ -939,6 +939,1142 @@ export const openaiChatModels: AIChatModelCard[] = [
     },
     type: 'chat',
   },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 1_050_000,
+    description:
+      'GPT-5.4 is the frontier model for complex professional work with highest reasoning capability.',
+    displayName: 'GPT-5.4',
+    enabled: true,
+    id: 'gpt-5.4',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 2.5,
+              '[0.272, infinity]': 5,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textInput',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 0.25,
+              '[0.272, infinity]': 0.5,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textInput_cacheRead',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 15,
+              '[0.272, infinity]': 22.5,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textOutput',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2026-03-05',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 1_050_000,
+    description:
+      'GPT-5.4 pro uses more compute to think harder and provide consistently better answers, available in the Responses API only.',
+    displayName: 'GPT-5.4 pro',
+    id: 'gpt-5.4-pro',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 30,
+              '[0.272, infinity]': 60,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textInput',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 180,
+              '[0.272, infinity]': 270,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textOutput',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2026-03-05',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 128_000,
+    description:
+      'GPT-5.3 Chat is the latest ChatGPT model used in ChatGPT with improved conversation experiences.',
+    displayName: 'GPT-5.3 Chat',
+    enabled: true,
+    id: 'gpt-5.3-chat-latest',
+    maxOutput: 16_384,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2026-03-04',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.3-Codex is the most capable agentic coding model to date, optimized for agentic coding tasks in Codex or similar environments.',
+    displayName: 'GPT-5.3 Codex',
+    id: 'gpt-5.3-codex',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2026-02-05',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.2 is a flagship model for coding and agentic workflows with stronger reasoning and long-context performance.',
+    displayName: 'GPT-5.2',
+    id: 'gpt-5.2',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-11',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.2-Codex is an upgraded GPT-5.2 variant optimized for long-horizon, agentic coding tasks.',
+    displayName: 'GPT-5.2 Codex',
+    id: 'gpt-5.2-codex',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-18',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.2 pro: a smarter, more precise GPT-5.2 variant (Responses API only), suited for hard problems and longer multi-turn reasoning.',
+    displayName: 'GPT-5.2 pro',
+    id: 'gpt-5.2-pro',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 21,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 168,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-11',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      vision: true,
+    },
+    contextWindowTokens: 128_000,
+    description:
+      'GPT-5.2 Chat is the ChatGPT variant (chat-latest) for the latest conversation improvements.',
+    displayName: 'GPT-5.2 Chat',
+    id: 'gpt-5.2-chat-latest',
+    maxOutput: 16_384,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-11',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.1 — a flagship model optimized for coding and agent tasks with configurable reasoning effort and longer context.',
+    displayName: 'GPT-5.1',
+    id: 'gpt-5.1',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.125,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 10,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-13',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      vision: true,
+    },
+    contextWindowTokens: 128_000,
+    description: 'GPT-5.1 Chat: the ChatGPT variant of GPT-5.1, built for chat scenarios.',
+    displayName: 'GPT-5.1 Chat',
+    id: 'gpt-5.1-chat-latest',
+    maxOutput: 16_384,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.125,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 10,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-13',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      "GPT-5.1 Codex Max: OpenAI's most intelligent coding model, optimized for long-horizon agentic coding tasks, supports reasoning tokens.",
+    displayName: 'GPT-5.1 Codex Max',
+    id: 'gpt-5.1-codex-max',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.125,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 10,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-04',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.1 Codex: a GPT-5.1 variant optimized for agentic coding tasks, for complex code/agent workflows in the Responses API.',
+    displayName: 'GPT-5.1 Codex',
+    id: 'gpt-5.1-codex',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.125,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 10,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-13',
+    settings: {
+      extendParams: ['reasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.1 Codex mini: a smaller, lower-cost Codex variant optimized for agentic coding tasks.',
+    displayName: 'GPT-5.1 Codex mini',
+    id: 'gpt-5.1-codex-mini',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 0.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.025,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 2,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-13',
+    settings: {
+      extendParams: ['reasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 1_050_000,
+    description:
+      'GPT-5.4 is the frontier model for complex professional work with highest reasoning capability.',
+    displayName: 'GPT-5.4 (CA渠道)',
+    enabled: true,
+    id: 'gpt-5.4-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 2.5,
+              '[0.272, infinity]': 5,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textInput',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 0.25,
+              '[0.272, infinity]': 0.5,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textInput_cacheRead',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '[0, 0.272]': 15,
+              '[0.272, infinity]': 22.5,
+            },
+            pricingParams: ['textInput'],
+          },
+          name: 'textOutput',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2026-03-05',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description: 'GPT-5 Codex 是一个针对 Codex 或类似环境中的代理编码任务优化的 GPT-5 版本。',
+    displayName: 'GPT-5 Codex (CA渠道)',
+    id: 'gpt-5-codex-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        { name: 'textInput', rate: 1.25, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 10, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput_cacheRead', rate: 0.125, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2024-09-15',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.1 Codex: a GPT-5.1 variant optimized for agentic coding tasks, for complex code/agent workflows in the Responses API.',
+    displayName: 'GPT-5.1 Codex (CA渠道)',
+    id: 'gpt-5.1-codex-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.125,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 10,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-13',
+    settings: {
+      extendParams: ['reasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.2-Codex is an upgraded GPT-5.2 variant optimized for long-horizon, agentic coding tasks.',
+    displayName: 'GPT-5.2 Codex (CA渠道)',
+    id: 'gpt-5.2-codex-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-18',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.2 is a flagship model for coding and agentic workflows with stronger reasoning and long-context performance.',
+    displayName: 'GPT-5.2 (CA渠道)',
+    id: 'gpt-5.2-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-11',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      vision: true,
+    },
+    contextWindowTokens: 128_000,
+    description:
+      'GPT-5.2 Chat is the ChatGPT variant (chat-latest) for the latest conversation improvements.',
+    displayName: 'GPT-5.2 Chat (CA渠道)',
+    id: 'gpt-5.2-chat-latest-ca',
+    maxOutput: 16_384,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.75,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.175,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 14,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-12-11',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'GPT-5.1 — a flagship model optimized for coding and agent tasks with configurable reasoning effort and longer context.',
+    displayName: 'GPT-5.1 (CA渠道)',
+    id: 'gpt-5.1-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.125,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 10,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-13',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      vision: true,
+    },
+    contextWindowTokens: 128_000,
+    description: 'GPT-5.1 Chat: the ChatGPT variant of GPT-5.1, built for chat scenarios.',
+    displayName: 'GPT-5.1 Chat (CA渠道)',
+    id: 'gpt-5.1-chat-latest-ca',
+    maxOutput: 16_384,
+    pricing: {
+      units: [
+        {
+          name: 'textInput',
+          rate: 1.25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.125,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 10,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-13',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      '跨领域编码和代理任务的最佳模型。GPT-5 在准确性、速度、推理、上下文识别、结构化思维和问题解决方面实现了飞跃。',
+    displayName: 'GPT-5 (CA渠道)',
+    enabled: true,
+    id: 'gpt-5-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        { name: 'textInput', rate: 1.25, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 10, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput_cacheRead', rate: 0.125, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2025-08-07',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      '更快、更经济高效的 GPT-5 版本，适用于明确定义的任务。在保持高质量输出的同时，提供更快的响应速度。',
+    displayName: 'GPT-5 mini (CA渠道)',
+    enabled: true,
+    id: 'gpt-5-mini-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        { name: 'textInput', rate: 0.25, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 2, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput_cacheRead', rate: 0.025, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2025-08-07',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description: '最快、最经济高效的 GPT-5 版本。非常适合需要快速响应且成本敏感的应用场景。',
+    displayName: 'GPT-5 nano (CA渠道)',
+    id: 'gpt-5-nano-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        { name: 'textInput', rate: 0.05, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 0.4, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput_cacheRead', rate: 0.005, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2025-08-07',
+    settings: {
+      extendParams: ['gpt5ReasoningEffort', 'textVerbosity'],
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'ChatGPT 中使用的 GPT-5 模型。结合了强大的语言理解与生成能力，适合对话式交互应用。',
+    displayName: 'GPT-5 Chat (CA渠道)',
+    enabled: true,
+    id: 'gpt-5-chat-latest-ca',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        { name: 'textInput', rate: 1.25, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 10, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput_cacheRead', rate: 0.125, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2025-08-07',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 1_047_576,
+    description: 'GPT-4.1 是我们用于复杂任务的旗舰模型。它非常适合跨领域解决问题。',
+    displayName: 'GPT-4.1 (CA渠道)',
+    id: 'gpt-4.1-ca',
+    maxOutput: 32_768,
+    pricing: {
+      units: [
+        { name: 'textInput_cacheRead', rate: 0.5, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput', rate: 2, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 8, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2025-04-14',
+    settings: {
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 1_047_576,
+    description:
+      'GPT-4.1 mini 提供了智能、速度和成本之间的平衡，使其成为许多用例中有吸引力的模型。',
+    displayName: 'GPT-4.1 mini (CA渠道)',
+    id: 'gpt-4.1-mini-ca',
+    maxOutput: 32_768,
+    pricing: {
+      units: [
+        { name: 'textInput_cacheRead', rate: 0.1, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput', rate: 0.4, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 1.6, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2025-04-14',
+    settings: {
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      vision: true,
+    },
+    contextWindowTokens: 1_047_576,
+    description: 'GPT-4.1 nano 是最快，最具成本效益的GPT-4.1模型。',
+    displayName: 'GPT-4.1 nano (CA渠道)',
+    id: 'gpt-4.1-nano-ca',
+    maxOutput: 32_768,
+    pricing: {
+      units: [
+        { name: 'textInput_cacheRead', rate: 0.025, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput', rate: 0.1, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 0.4, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2025-04-14',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+    },
+    contextWindowTokens: 16_384,
+    description:
+      'GPT 3.5 Turbo，适用于各种文本生成和理解任务，Currently points to gpt-3.5-turbo-0125',
+    displayName: 'GPT-3.5 Turbo (CA渠道)',
+    id: 'gpt-3.5-turbo-ca',
+    pricing: {
+      units: [
+        { name: 'textInput', rate: 0.5, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 1.5, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+    },
+    contextWindowTokens: 8192,
+    description:
+      'GPT-4 提供了一个更大的上下文窗口，能够处理更长的文本输入，适用于需要广泛信息整合和数据分析的场景。',
+    displayName: 'GPT-4 (CA渠道)',
+    id: 'gpt-4-ca',
+    pricing: {
+      units: [
+        { name: 'textInput', rate: 30, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 60, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 128_000,
+    description:
+      'ChatGPT-4o 是一款动态模型，实时更新以保持当前最新版本。它结合了强大的语言理解与生成能力，适合于大规模应用场景，包括客户服务、教育和技术支持。',
+    displayName: 'GPT-4o (CA渠道)',
+    id: 'gpt-4o-ca',
+    pricing: {
+      units: [
+        { name: 'textInput_cacheRead', rate: 1.25, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput', rate: 2.5, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 10, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2024-05-13',
+    settings: {
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 128_000,
+    description:
+      'GPT-4o mini是OpenAI在GPT-4 Omni之后推出的最新模型，支持图文输入并输出文本。作为他们最先进的小型模型，它比其他近期的前沿模型便宜很多，并且比GPT-3.5 Turbo便宜超过60%。它保持了最先进的智能，同时具有显著的性价比。GPT-4o mini在MMLU测试中获得了 82% 的得分，目前在聊天偏好上排名高于 GPT-4。',
+    displayName: 'GPT-4o mini (CA渠道)',
+    id: 'gpt-4o-mini-ca',
+    maxOutput: 16_384,
+    pricing: {
+      units: [
+        { name: 'textInput_cacheRead', rate: 0.075, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textInput', rate: 0.15, strategy: 'fixed', unit: 'millionTokens' },
+        { name: 'textOutput', rate: 0.6, strategy: 'fixed', unit: 'millionTokens' },
+      ],
+    },
+    releasedAt: '2024-07-18',
+    settings: {
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
 ];
 
 export const openaiEmbeddingModels: AIEmbeddingModelCard[] = [

@@ -39,7 +39,8 @@ const anthropicChatModels: AIChatModelCard[] = [
       vision: true,
     },
     contextWindowTokens: 200_000,
-    description: 'Claude Haiku 4.5 是 Anthropic 最快且最智能的 Haiku 模型，具有闪电般的速度和扩展思考能力。',
+    description:
+      'Claude Haiku 4.5 是 Anthropic 最快且最智能的 Haiku 模型，具有闪电般的速度和扩展思考能力。',
     displayName: 'Claude Haiku 4.5',
     enabled: true,
     id: 'claude-haiku-4-5-20251001',
@@ -347,6 +348,172 @@ const anthropicChatModels: AIChatModelCard[] = [
     releasedAt: '2024-02-29',
     settings: {
       extendParams: ['disableContextCaching'],
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 200_000,
+    description:
+      'Claude Opus 4.6 is Anthropic’s most intelligent model for building agents and coding.',
+    displayName: 'Claude Opus 4.6',
+    enabled: true,
+    id: 'claude-opus-4-6',
+    maxOutput: 128_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.5,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput',
+          rate: 5,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '1h': 10,
+              '5m': 6.25,
+            },
+            pricingParams: ['ttl'],
+          },
+          name: 'textInput_cacheWrite',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2026-02-05',
+    settings: {
+      extendParams: ['disableContextCaching', 'enableReasoning', 'reasoningBudgetToken'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 200_000,
+    description: 'Claude Sonnet 4.6 is Anthropic’s best combination of speed and intelligence.',
+    displayName: 'Claude Sonnet 4.6',
+    enabled: true,
+    id: 'claude-sonnet-4-6',
+    maxOutput: 64_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.3,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput',
+          rate: 3,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 15,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '1h': 6,
+              '5m': 3.75,
+            },
+            pricingParams: ['ttl'],
+          },
+          name: 'textInput_cacheWrite',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2026-02-17',
+    settings: {
+      extendParams: ['disableContextCaching', 'enableReasoning', 'reasoningBudgetToken'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      structuredOutput: true,
+      vision: true,
+    },
+    contextWindowTokens: 200_000,
+    description:
+      'Claude Opus 4.5 is Anthropic’s flagship model, combining top-tier intelligence with scalable performance for complex, high-quality reasoning tasks.',
+    displayName: 'Claude Opus 4.5',
+    id: 'claude-opus-4-5-20251101',
+    maxOutput: 64_000,
+    pricing: {
+      units: [
+        {
+          name: 'textInput_cacheRead',
+          rate: 0.5,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textInput',
+          rate: 5,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          name: 'textOutput',
+          rate: 25,
+          strategy: 'fixed',
+          unit: 'millionTokens',
+        },
+        {
+          lookup: {
+            prices: {
+              '1h': 10,
+              '5m': 6.25,
+            },
+            pricingParams: ['ttl'],
+          },
+          name: 'textInput_cacheWrite',
+          strategy: 'lookup',
+          unit: 'millionTokens',
+        },
+      ],
+    },
+    releasedAt: '2025-11-24',
+    settings: {
+      extendParams: ['disableContextCaching', 'enableReasoning', 'reasoningBudgetToken'],
+      searchImpl: 'params',
     },
     type: 'chat',
   },

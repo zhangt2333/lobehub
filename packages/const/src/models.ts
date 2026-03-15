@@ -35,12 +35,31 @@ export const responsesAPIModels = new Set([
   'codex-mini-latest',
   'computer-use-preview',
   'computer-use-preview-2025-03-11',
+  'gpt-5.4',
+  'gpt-5.4-pro',
+  'gpt-5.3-codex',
+  'gpt-5.2',
+  'gpt-5.2-codex',
+  'gpt-5.2-pro',
+  'gpt-5.1',
+  'gpt-5.1-codex-max',
+  'gpt-5.1-codex',
+  'gpt-5.1-codex-mini',
+  'gpt-5.4-ca',
+  'gpt-5-codex-ca',
+  'gpt-5.1-codex-ca',
+  'gpt-5.2-codex-ca',
+  'gpt-5.2-ca',
+  'gpt-5.1-ca',
 ]);
 
 /**
  * models support context caching
  */
 export const contextCachingModels = new Set([
+  'claude-opus-4-6',
+  'claude-sonnet-4-6',
+  'claude-opus-4-5-20251101',
   'claude-haiku-4-5-20251001',
   'claude-sonnet-4-5-latest',
   'claude-sonnet-4-5-20250929',
@@ -59,6 +78,9 @@ export const contextCachingModels = new Set([
 ]);
 
 export const thinkingWithToolClaudeModels = new Set([
+  'claude-opus-4-6',
+  'claude-sonnet-4-6',
+  'claude-opus-4-5-20251101',
   'claude-opus-4-latest',
   'claude-opus-4-20250514',
   'claude-sonnet-4-latest',
