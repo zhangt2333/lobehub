@@ -1,16 +1,17 @@
 import { QueryRewriteSystemAgent, SystemAgentItem, UserSystemAgentConfig } from '@lobechat/types';
 
-import { DEFAULT_MODEL, DEFAULT_PROVIDER } from './llm';
+const DEFAULT_SYSTEM_AGENT_MODEL = 'gpt-4o-mini';
+const DEFAULT_SYSTEM_AGENT_PROVIDER = 'openai';
 
 export const DEFAULT_SYSTEM_AGENT_ITEM: SystemAgentItem = {
-  model: DEFAULT_MODEL,
-  provider: DEFAULT_PROVIDER,
+  model: DEFAULT_SYSTEM_AGENT_MODEL,
+  provider: DEFAULT_SYSTEM_AGENT_PROVIDER,
 };
 
 export const DEFAULT_QUERY_REWRITE_SYSTEM_AGENT_ITEM: QueryRewriteSystemAgent = {
   enabled: true,
-  model: DEFAULT_MODEL,
-  provider: DEFAULT_PROVIDER,
+  model: DEFAULT_SYSTEM_AGENT_MODEL,
+  provider: DEFAULT_SYSTEM_AGENT_PROVIDER,
 };
 
 export const DEFAULT_SYSTEM_AGENT_CONFIG: UserSystemAgentConfig = {

@@ -16,14 +16,15 @@ const ICON_SIZE: ActionIconProps['size'] = {
   strokeWidth: 1.5,
 };
 
+const HIDE_COMMUNITY_LINKS = true;
+
 const BottomActions = memo(() => {
   const { t } = useTranslation('common');
-
   const { hideGitHub } = useServerConfigStore(featureFlagsSelectors);
 
   return (
     <Flexbox gap={8}>
-      {!hideGitHub && (
+      {!HIDE_COMMUNITY_LINKS && !hideGitHub && (
         <Link aria-label={'GitHub'} href={GITHUB} target={'_blank'}>
           <ActionIcon
             icon={Github}
@@ -33,14 +34,16 @@ const BottomActions = memo(() => {
           />
         </Link>
       )}
-      <Link aria-label={t('labs')} href={'/labs'}>
-        <ActionIcon
-          icon={FlaskConical}
-          size={ICON_SIZE}
-          title={t('labs')}
-          tooltipProps={{ placement: 'right' }}
-        />
-      </Link>
+      {!HIDE_COMMUNITY_LINKS && (
+        <Link aria-label={t('labs')} href={'/labs'}>
+          <ActionIcon
+            icon={FlaskConical}
+            size={ICON_SIZE}
+            title={t('labs')}
+            tooltipProps={{ placement: 'right' }}
+          />
+        </Link>
+      )}
       <PHLaunch />
     </Flexbox>
   );

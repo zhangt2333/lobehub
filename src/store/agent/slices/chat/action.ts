@@ -6,6 +6,7 @@ import { StateCreator } from 'zustand/vanilla';
 
 import { MESSAGE_CANCEL_FLAT } from '@/const/message';
 import { INBOX_SESSION_ID } from '@/const/session';
+import { DEFAULT_AGENT_CONFIG } from '@/const/settings';
 import { useClientDataSWR, useOnlyFetchOnceSWR } from '@/libs/swr';
 import { agentService } from '@/services/agent';
 import { sessionService } from '@/services/session';
@@ -58,6 +59,24 @@ export interface AgentChatAction {
 
 const FETCH_AGENT_CONFIG_KEY = 'FETCH_AGENT_CONFIG';
 const FETCH_AGENT_KNOWLEDGE_KEY = 'FETCH_AGENT_KNOWLEDGE';
+
+const withForcedHistoryConfig = (
+  defaultAgentConfig: LobeAgentConfig,
+  config: PartialDeep<LobeAgentConfig>,
+): PartialDeep<LobeAgentConfig> => {
+  if (!config.chatConfig) return config;
+
+  const defaultChatConfig = merge(DEFAULT_AGENT_CONFIG.chatConfig, defaultAgentConfig.chatConfig);
+
+  return {
+    ...config,
+    chatConfig: {
+      ...config.chatConfig,
+      enableHistoryCount: defaultChatConfig.enableHistoryCount,
+      historyCount: defaultChatConfig.historyCount,
+    },
+  };
+};
 
 export const createChatSlice: StateCreator<
   AgentStore,
@@ -154,9 +173,10 @@ export const createChatSlice: StateCreator<
 
     if (!activeId) return;
 
+    const nextConfig = withForcedHistoryConfig(get().defaultAgentConfig, config);
     const controller = get().internal_createAbortController('updateAgentConfigSignal');
 
-    await get().internal_updateAgentConfig(activeId, config, controller.signal);
+    await get().internal_updateAgentConfig(activeId, nextConfig, controller.signal);
   },
   useFetchAgentConfig: (isLogin, sessionId) =>
     useClientDataSWR<LobeAgentConfig>(

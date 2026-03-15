@@ -71,11 +71,11 @@ export const evaluateFeatureFlag = (
 export const DEFAULT_FEATURE_FLAGS: IFeatureFlags = {
   pin_list: false,
 
-  language_model_settings: true,
-  provider_settings: true,
+  language_model_settings: false,
+  provider_settings: false,
 
-  openai_api_key: true,
-  openai_proxy_url: true,
+  openai_api_key: false,
+  openai_proxy_url: false,
 
   api_key_manage: false,
 
@@ -83,23 +83,23 @@ export const DEFAULT_FEATURE_FLAGS: IFeatureFlags = {
   edit_agent: true,
 
   plugins: true,
-  dalle: true,
-  ai_image: true,
+  dalle: false,
+  ai_image: false,
 
-  check_updates: true,
-  welcome_suggest: true,
+  check_updates: false,
+  welcome_suggest: false,
   token_counter: true,
 
   knowledge_base: true,
   rag_eval: false,
 
-  clerk_sign_up: true,
+  clerk_sign_up: false,
 
   cloud_promotion: false,
 
-  market: true,
+  market: false,
   speech_to_text: true,
-  changelog: true,
+  changelog: false,
 
   group_chat: false,
 

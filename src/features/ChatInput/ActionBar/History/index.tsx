@@ -2,12 +2,14 @@ import { Timer, TimerOff } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { useAgentStore } from '@/store/agent';
 import { agentChatConfigSelectors, agentSelectors } from '@/store/agent/selectors';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 import Action from '../components/Action';
 import Controls from './Controls';
+
+const HIDE_HISTORY_LIMIT_ACTION = true;
 
 const History = memo(() => {
   const [isLoading, chatConfig, updateAgentChatConfig] = useAgentStore((s) => [
@@ -26,6 +28,8 @@ const History = memo(() => {
     ];
   });
 
+  if (HIDE_HISTORY_LIMIT_ACTION) return null;
+
   if (isLoading) return <Action disabled icon={TimerOff} />;
 
   const title = t(
@@ -43,11 +47,11 @@ const History = memo(() => {
         isMobile
           ? undefined
           : async (e) => {
-            e?.preventDefault?.();
-            e?.stopPropagation?.();
-            const next = !Boolean(chatConfig.enableHistoryCount);
-            await updateAgentChatConfig({ enableHistoryCount: next });
-          }
+              e?.preventDefault?.();
+              e?.stopPropagation?.();
+              const next = !Boolean(chatConfig.enableHistoryCount);
+              await updateAgentChatConfig({ enableHistoryCount: next });
+            }
       }
       popover={{
         content: <Controls setUpdating={setUpdating} updating={updating} />,

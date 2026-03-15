@@ -213,7 +213,7 @@ export const getLLMConfig = () => {
     runtimeEnv: {
       API_KEY_SELECT_MODE: process.env.API_KEY_SELECT_MODE,
 
-      ENABLED_OPENAI: process.env.ENABLED_OPENAI !== '0',
+      ENABLED_OPENAI: process.env.ENABLED_OPENAI === '1',
       OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 
       ENABLED_AZURE_OPENAI: !!process.env.AZURE_API_KEY,
@@ -279,7 +279,7 @@ export const getLLMConfig = () => {
       ENABLED_WENXIN: !!process.env.WENXIN_API_KEY,
       WENXIN_API_KEY: process.env.WENXIN_API_KEY,
 
-      ENABLED_OLLAMA: process.env.ENABLED_OLLAMA !== '0',
+      ENABLED_OLLAMA: process.env.ENABLED_OLLAMA === '1',
       ENABLED_OLLAMA_CLOUD: !!process.env.OLLAMA_CLOUD_API_KEY,
       OLLAMA_CLOUD_API_KEY: process.env.OLLAMA_CLOUD_API_KEY,
 
@@ -372,13 +372,13 @@ export const getLLMConfig = () => {
       ENABLED_INFINIAI: !!process.env.INFINIAI_API_KEY,
       INFINIAI_API_KEY: process.env.INFINIAI_API_KEY,
 
-      ENABLED_FAL: process.env.ENABLED_FAL !== '0',
+      ENABLED_FAL: process.env.ENABLED_FAL === '1',
       FAL_API_KEY: process.env.FAL_API_KEY,
 
       ENABLED_BFL: !!process.env.BFL_API_KEY,
       BFL_API_KEY: process.env.BFL_API_KEY,
 
-      ENABLED_COMFYUI: process.env.ENABLED_COMFYUI !== '0',
+      ENABLED_COMFYUI: process.env.ENABLED_COMFYUI === '1',
       COMFYUI_BASE_URL: process.env.COMFYUI_BASE_URL,
       COMFYUI_AUTH_TYPE: process.env.COMFYUI_AUTH_TYPE,
       COMFYUI_API_KEY: process.env.COMFYUI_API_KEY,

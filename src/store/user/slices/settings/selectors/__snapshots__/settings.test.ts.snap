@@ -51,34 +51,34 @@ exports[`settingsSelectors > currentSettings > should merge DEFAULT_SETTINGS and
 exports[`settingsSelectors > currentSystemAgent > should merge DEFAULT_SYSTEM_AGENT_CONFIG and s.settings.systemAgent correctly 1`] = `
 {
   "agentMeta": {
-    "model": "gpt-5-mini",
+    "model": "gpt-4o-mini",
     "provider": "openai",
   },
   "enableAutoReply": true,
   "generationTopic": {
-    "model": "gpt-5-mini",
+    "model": "gpt-4o-mini",
     "provider": "openai",
   },
   "historyCompress": {
-    "model": "gpt-5-mini",
+    "model": "gpt-4o-mini",
     "provider": "openai",
   },
   "queryRewrite": {
     "enabled": true,
-    "model": "gpt-5-mini",
+    "model": "gpt-4o-mini",
     "provider": "openai",
   },
   "replyMessage": "Custom auto reply",
   "thread": {
-    "model": "gpt-5-mini",
+    "model": "gpt-4o-mini",
     "provider": "openai",
   },
   "topic": {
-    "model": "gpt-5-mini",
+    "model": "gpt-4o-mini",
     "provider": "openai",
   },
   "translation": {
-    "model": "gpt-5-mini",
+    "model": "gpt-4o-mini",
     "provider": "openai",
   },
 }

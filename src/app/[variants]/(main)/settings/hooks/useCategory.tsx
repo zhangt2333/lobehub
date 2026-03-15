@@ -19,6 +19,10 @@ import { isDeprecatedEdition, isDesktop } from '@/const/version';
 import { SettingsTabs } from '@/store/global/initialState';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
+const HIDE_DEFAULT_AGENT_SETTINGS = true;
+const HIDE_AI_IMAGE_SETTINGS = true;
+const HIDE_ABOUT_SETTINGS = true;
+
 export const useCategory = () => {
   const { t } = useTranslation('setting');
   const mobile = useServerConfigStore((s) => s.isMobile);
@@ -32,7 +36,7 @@ export const useCategory = () => {
           key: SettingsTabs.Common,
           label: t('tab.common'),
         },
-        {
+        !HIDE_DEFAULT_AGENT_SETTINGS && {
           icon: <Icon icon={Bot} />,
           key: SettingsTabs.Agent,
           label: t('tab.agent'),
@@ -58,7 +62,7 @@ export const useCategory = () => {
                 key: SettingsTabs.Provider,
                 label: t('tab.provider'),
               }),
-        {
+        !HIDE_AI_IMAGE_SETTINGS && {
           icon: <Icon icon={ImageIcon} />,
           key: SettingsTabs.Image,
           label: t('tab.image'),
@@ -86,11 +90,12 @@ export const useCategory = () => {
           key: SettingsTabs.Storage,
           label: t('tab.storage'),
         },
-        !hideDocs && {
-          icon: <Icon icon={Info} />,
-          key: SettingsTabs.About,
-          label: t('tab.about'),
-        },
+        !HIDE_ABOUT_SETTINGS &&
+          !hideDocs && {
+            icon: <Icon icon={Info} />,
+            key: SettingsTabs.About,
+            label: t('tab.about'),
+          },
       ].filter(Boolean) as MenuProps['items'],
     [t, showLLM, enableSTT, hideDocs, mobile],
   );

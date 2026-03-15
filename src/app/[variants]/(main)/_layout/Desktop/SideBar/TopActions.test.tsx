@@ -1,27 +1,13 @@
 import { act, cleanup, fireEvent, render, renderHook, screen } from '@testing-library/react';
-import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { DEFAULT_FEATURE_FLAGS, mapFeatureFlagsEnvToState } from '@/config/featureFlags';
 import { useGlobalStore } from '@/store/global';
 import { SidebarTabKey } from '@/store/global/initialState';
-import {
-  Provider,
-  createServerConfigStore,
-  initServerConfigStore,
-} from '@/store/serverConfig/store';
+import { Provider, createServerConfigStore } from '@/store/serverConfig/store';
 import { useSessionStore } from '@/store/session';
 
 import TopActions, { TopActionProps } from './TopActions';
-
-beforeAll(() => {
-  initServerConfigStore({
-    featureFlags: {
-      ...mapFeatureFlagsEnvToState(DEFAULT_FEATURE_FLAGS),
-      showMarket: true,
-      showAiImage: true,
-    },
-  });
-});
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -69,7 +55,17 @@ const renderTopActions = (props: TopActionProps = {}) => {
 };
 
 describe('TopActions', () => {
-  it('should render Chat, AI Image and Market by default', () => {
+  it('should render Chat, AI Image and Market when enabled', () => {
+    act(() => {
+      createServerConfigStore().setState({
+        featureFlags: {
+          ...createServerConfigStore().getState().featureFlags,
+          showMarket: true,
+          showAiImage: true,
+        },
+      });
+    });
+
     renderTopActions();
 
     expect(screen.getByText('tab.chat')).toBeInTheDocument();

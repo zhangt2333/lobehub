@@ -17,14 +17,35 @@ const isInboxSession = (s: AgentStoreState) => s.activeId === INBOX_SESSION_ID;
 
 // ==========   Config   ============== //
 
+const getForcedHistoryConfig = (s: AgentStoreState) => {
+  const defaultChatConfig = merge(DEFAULT_AGENT_CONFIG.chatConfig, s.defaultAgentConfig.chatConfig);
+
+  return {
+    enableHistoryCount: defaultChatConfig.enableHistoryCount,
+    historyCount: defaultChatConfig.historyCount,
+  };
+};
+
+const withForcedHistoryConfig = (s: AgentStoreState, config: LobeAgentConfig): LobeAgentConfig => {
+  const forcedHistoryConfig = getForcedHistoryConfig(s);
+
+  return {
+    ...config,
+    chatConfig: {
+      ...config.chatConfig,
+      ...forcedHistoryConfig,
+    },
+  };
+};
+
 const inboxAgentConfig = (s: AgentStoreState) =>
-  merge(DEFAULT_AGENT_CONFIG, s.agentMap[INBOX_SESSION_ID]);
+  withForcedHistoryConfig(s, merge(DEFAULT_AGENT_CONFIG, s.agentMap[INBOX_SESSION_ID]));
 const inboxAgentModel = (s: AgentStoreState) => inboxAgentConfig(s).model;
 
 const getAgentConfigById =
   (id: string) =>
   (s: AgentStoreState): LobeAgentConfig =>
-    merge(s.defaultAgentConfig, s.agentMap[id]);
+    withForcedHistoryConfig(s, merge(s.defaultAgentConfig, s.agentMap[id]));
 
 const getAgentConfigByAgentId =
   (agentId: string) =>
@@ -36,11 +57,11 @@ const getAgentConfigByAgentId =
     });
 
     if (sessionId) {
-      return merge(s.defaultAgentConfig, s.agentMap[sessionId]);
+      return withForcedHistoryConfig(s, merge(s.defaultAgentConfig, s.agentMap[sessionId]));
     }
 
     // Fallback to default config if agent not found
-    return s.defaultAgentConfig;
+    return withForcedHistoryConfig(s, s.defaultAgentConfig);
   };
 
 export const currentAgentConfig = (s: AgentStoreState): LobeAgentConfig =>
