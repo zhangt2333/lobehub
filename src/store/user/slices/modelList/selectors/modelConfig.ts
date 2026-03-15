@@ -66,7 +66,7 @@ const currentEditingCustomModelCard = (s: UserStore) => {
 const isAutoFetchModelsEnabled =
   (provider: GlobalLLMProviderKey) =>
   (s: UserStore): boolean => {
-    return getProviderConfigById(provider)(s)?.autoFetchModelLists || false;
+    return getProviderConfigById(provider)(s)?.autoFetchModelLists ?? true;
   };
 
 const openAIConfig = (s: UserStore) => currentLLMSettings(s).openai;

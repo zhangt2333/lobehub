@@ -126,7 +126,7 @@ describe('modelConfigSelectors', () => {
           },
         },
       } as UserSettingsState) as unknown as UserStore;
-      expect(modelConfigSelectors.isAutoFetchModelsEnabled('qwen')(s)).toBe(false);
+      expect(modelConfigSelectors.isProviderFetchOnClient('qwen')(s)).toBe(false);
     });
   });
 
@@ -214,6 +214,32 @@ describe('modelConfigSelectors', () => {
       const currentEditingModelCard = modelConfigSelectors.currentEditingCustomModelCard(s);
 
       expect(currentEditingModelCard).toBeUndefined();
+    });
+  });
+
+  describe('isAutoFetchModelsEnabled', () => {
+    it('should enable auto fetch by default when user setting is unset', () => {
+      const s = merge(initialSettingsState, {
+        settings: {
+          languageModel: {
+            openai: { enabled: true },
+          },
+        },
+      } as UserSettingsState) as unknown as UserStore;
+
+      expect(modelConfigSelectors.isAutoFetchModelsEnabled('openai')(s)).toBe(true);
+    });
+
+    it('should follow the user setting when auto fetch is explicitly disabled', () => {
+      const s = merge(initialSettingsState, {
+        settings: {
+          languageModel: {
+            openai: { autoFetchModelLists: false, enabled: true },
+          },
+        },
+      } as UserSettingsState) as unknown as UserStore;
+
+      expect(modelConfigSelectors.isAutoFetchModelsEnabled('openai')(s)).toBe(false);
     });
   });
 });
