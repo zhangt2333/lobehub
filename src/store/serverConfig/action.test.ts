@@ -2,6 +2,8 @@ import { act } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { globalService } from '@/services/global';
+import { useAgentStore } from '@/store/agent';
+import { useUserStore } from '@/store/user';
 import { GlobalRuntimeConfig } from '@/types/serverConfig';
 
 import { createServerConfigStore } from './store';
@@ -47,6 +49,14 @@ beforeEach(() => {
   vi.resetModules();
 
   mockSWRData = mockGlobalConfig;
+
+  useUserStore.setState({
+    defaultSettings: useUserStore.getInitialState().defaultSettings,
+    serverLanguageModel: undefined,
+  });
+  useAgentStore.setState({
+    defaultAgentConfig: useAgentStore.getInitialState().defaultAgentConfig,
+  });
 });
 
 afterEach(() => {
@@ -56,6 +66,52 @@ afterEach(() => {
 });
 
 describe('ServerConfigAction', () => {
+  describe('refreshServerConfig', () => {
+    it('should sync server config into dependent stores', async () => {
+      const store = createServerConfigStore();
+      const refreshDefaultModelProviderList = vi
+        .spyOn(useUserStore.getState(), 'refreshDefaultModelProviderList')
+        .mockResolvedValue(undefined);
+      const nextConfig: GlobalRuntimeConfig = {
+        serverConfig: {
+          aiProvider: {},
+          defaultAgent: {
+            config: {
+              chatConfig: {
+                historyCount: 8,
+              },
+            },
+          },
+          languageModel: {
+            openai: {
+              enabled: true,
+              serverModelCards: [{ id: 'gpt-4.1', enabled: true }],
+            },
+          },
+          telemetry: {},
+        },
+        serverFeatureFlags: {
+          enableWebrtc: false,
+        },
+      } as any;
+
+      vi.spyOn(globalService, 'getGlobalConfig').mockResolvedValue(nextConfig);
+
+      await act(async () => {
+        await store.getState().refreshServerConfig();
+      });
+
+      expect(store.getState().serverConfig).toEqual(nextConfig.serverConfig);
+      expect(useUserStore.getState().serverLanguageModel).toEqual(
+        nextConfig.serverConfig.languageModel,
+      );
+      expect(useAgentStore.getState().defaultAgentConfig.chatConfig.historyCount).toBe(8);
+      expect(refreshDefaultModelProviderList).toHaveBeenCalledWith({
+        trigger: 'refreshServerConfig',
+      });
+    });
+  });
+
   describe('useInitServerConfig', () => {
     it('should return SWR response', () => {
       const store = createServerConfigStore();

@@ -9,6 +9,7 @@ import { aiChatService } from '@/services/aiChat';
 import { chatService } from '@/services/chat';
 import { messageService } from '@/services/message';
 import { agentChatConfigSelectors } from '@/store/agent/selectors';
+import { createServerConfigStore } from '@/store/serverConfig/store';
 import { UploadFileItem } from '@/types/files/upload';
 
 import { useChatStore } from '../../../../store';
@@ -68,6 +69,9 @@ const realExecAgentRuntime = useChatStore.getState().internal_execAgentRuntime;
 beforeEach(() => {
   resetTestEnvironment();
   setupMockSelectors();
+  vi.spyOn(createServerConfigStore().getState(), 'refreshServerConfig').mockResolvedValue(
+    {} as any,
+  );
 
   // Setup default spies that most tests need
   spyOnMessageService();
@@ -139,6 +143,7 @@ describe('generateAIChatV2 actions', () => {
           await result.current.sendMessage({ message: TEST_CONTENT.USER_MESSAGE });
         });
 
+        expect(createServerConfigStore().getState().refreshServerConfig).toHaveBeenCalled();
         expect(aiChatService.sendMessageInServer).toHaveBeenCalledWith(
           {
             newAssistantMessage: {

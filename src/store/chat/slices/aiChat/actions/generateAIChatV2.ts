@@ -26,6 +26,7 @@ import { aiModelSelectors, aiProviderSelectors, getAiInfraStoreState } from '@/s
 import { MainSendMessageOperation } from '@/store/chat/slices/aiChat/initialState';
 import type { ChatStore } from '@/store/chat/store';
 import { getFileStoreState } from '@/store/file/store';
+import { createServerConfigStore } from '@/store/serverConfig/store';
 import { getSessionStoreState } from '@/store/session';
 import { WebBrowsingManifest } from '@/tools/web-browsing';
 import { setNamespace } from '@/utils/storeDebug';
@@ -94,6 +95,12 @@ export const generateAIChatV2: StateCreator<
     const { activeTopicId, activeId, activeThreadId, internal_execAgentRuntime, mainInputEditor } =
       get();
     if (!activeId) return;
+
+    try {
+      await createServerConfigStore().getState().refreshServerConfig();
+    } catch {
+      // Keep send flow available even if config refresh fails.
+    }
 
     const fileIdList = files?.map((f) => f.id);
 
@@ -502,9 +509,8 @@ export const generateAIChatV2: StateCreator<
       if (isDesktop) {
         try {
           // 动态导入桌面通知服务，避免在非桌面端环境中导入
-          const { desktopNotificationService } = await import(
-            '@/services/electron/desktopNotification'
-          );
+          const { desktopNotificationService } =
+            await import('@/services/electron/desktopNotification');
 
           await desktopNotificationService.showNotification({
             body: content,
