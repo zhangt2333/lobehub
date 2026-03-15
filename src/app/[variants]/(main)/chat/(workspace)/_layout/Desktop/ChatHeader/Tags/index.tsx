@@ -20,6 +20,8 @@ import KnowledgeTag from './KnowledgeTag';
 import MemberCountTag from './MemberCountTag';
 import SearchTags from './SearchTags';
 
+const HIDE_HISTORY_LIMIT_TAG = true;
+
 const TitleTags = memo(() => {
   const [model, provider, hasKnowledge, isLoading] = useAgentStore((s) => [
     agentSelectors.currentAgentModel(s),
@@ -56,7 +58,7 @@ const TitleTags = memo(() => {
       {isAgentEnableSearch && <SearchTags />}
       {showPlugin && plugins?.length > 0 && <PluginTag plugins={plugins} />}
       {hasKnowledge && <KnowledgeTag data={enabledKnowledge} />}
-      {enableHistoryCount && <HistoryLimitTags />}
+      {enableHistoryCount && !HIDE_HISTORY_LIMIT_TAG && <HistoryLimitTags />}
     </Flexbox>
   );
 });
