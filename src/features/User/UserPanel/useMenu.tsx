@@ -41,6 +41,9 @@ import { authSelectors } from '@/store/user/selectors';
 
 import { useNewVersion } from './useNewVersion';
 
+const HIDE_USER_PANEL_CHANGELOG = true;
+const HIDE_USER_PANEL_HELP = true;
+
 const NewVersionBadge = memo(
   ({
     children,
@@ -140,12 +143,12 @@ export const useMenu = () => {
         </Link>
       ),
     },
-    {
+    !HIDE_USER_PANEL_CHANGELOG && {
       icon: <Icon icon={FileClockIcon} />,
       key: 'changelog',
       label: <Link href={isDesktop ? CHANGELOG : '/changelog/modal'}>{t('changelog')}</Link>,
     },
-    {
+    !HIDE_USER_PANEL_HELP && {
       children: [
         {
           icon: <Icon icon={Book} />,

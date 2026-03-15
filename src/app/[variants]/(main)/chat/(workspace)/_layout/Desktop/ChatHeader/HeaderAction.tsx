@@ -22,6 +22,8 @@ import { HotkeyEnum } from '@/types/hotkey';
 import SettingButton from '../../../features/SettingButton';
 import ShareButton from '../../../features/ShareButton';
 
+const HIDE_OPEN_CHAT_SETTINGS_BUTTON = true;
+
 const HeaderAction = memo<{ className?: string }>(({ className }) => {
   const { t } = useTranslation('chat');
   const hotkey = useUserStore(settingsSelectors.getHotkeyById(HotkeyEnum.ToggleRightPanel));
@@ -56,7 +58,7 @@ const HeaderAction = memo<{ className?: string }>(({ className }) => {
           placement: 'bottom',
         }}
       />
-      {isAgentEditable && <SettingButton />}
+      {isAgentEditable && !HIDE_OPEN_CHAT_SETTINGS_BUTTON && <SettingButton />}
     </Flexbox>
   );
 });

@@ -61,6 +61,8 @@ const BtnListLoading = memo(() => {
   );
 });
 
+const HIDE_AUTH_SIGNIN_FOOTER = true;
+
 /**
  * Follow the implementation from AuthJS official documentation,
  * but using client components.
@@ -142,25 +144,32 @@ export default memo(() => {
           </Flex>
         </Flex>
       </div>
-      <div className={styles.footer}>
-        {/* Footer */}
-        <Row>
-          <Col span={12}>
-            <Flex justify="left" style={{ height: '100%' }}>
-              <BrandWatermark />
-            </Flex>
-          </Col>
-          <Col offset={4} span={8}>
-            <Flex justify="right">
-              {footerBtns.map((btn) => (
-                <Button key={btn.id} onClick={() => router.push(btn.href)} size="small" type="text">
-                  {btn.label}
-                </Button>
-              ))}
-            </Flex>
-          </Col>
-        </Row>
-      </div>
+      {!HIDE_AUTH_SIGNIN_FOOTER && (
+        <div className={styles.footer}>
+          {/* Footer */}
+          <Row>
+            <Col span={12}>
+              <Flex justify="left" style={{ height: '100%' }}>
+                <BrandWatermark />
+              </Flex>
+            </Col>
+            <Col offset={4} span={8}>
+              <Flex justify="right">
+                {footerBtns.map((btn) => (
+                  <Button
+                    key={btn.id}
+                    onClick={() => router.push(btn.href)}
+                    size="small"
+                    type="text"
+                  >
+                    {btn.label}
+                  </Button>
+                ))}
+              </Flex>
+            </Col>
+          </Row>
+        </div>
+      )}
     </div>
   );
 });

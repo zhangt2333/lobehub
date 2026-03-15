@@ -14,6 +14,7 @@ import Action from '../components/Action';
 import { useControls } from './useControls';
 
 const enableKnowledge = isServerMode;
+const HIDE_KNOWLEDGE_BASE_ACTION = true;
 
 const Knowledge = memo(() => {
   const { t } = useTranslation('chat');
@@ -27,6 +28,7 @@ const Knowledge = memo(() => {
 
   const items = useControls({ setModalOpen, setUpdating });
 
+  if (HIDE_KNOWLEDGE_BASE_ACTION) return null;
   if (!enableKnowledgeBase) return null;
   if (!enableKnowledge)
     return (
